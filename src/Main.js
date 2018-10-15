@@ -1,7 +1,7 @@
 window.A2xExtend=__extends;
 window.addEventListener("load",function(){
     annie.debug=false;
-    var stage=new annie.Stage("annieEngine",640,1136,24,annie.StageScaleMode.FIXED_HEIGHT,0);
+    var stage=new annie.Stage("annieEngine",640,1136,24,annie.StageScaleMode.FIXED_WIDTH,0);
     //默认关闭自动旋转和自动resize
     //stage.autoResize=true;
     //stage.autoSteering=true;
@@ -82,6 +82,8 @@ window.addEventListener("load",function(){
 
 
 
+                    //drag
+
                     function move_C(e){
 
                         event_type="move"
@@ -98,6 +100,7 @@ window.addEventListener("load",function(){
                     }
 
 
+                    //scale
                     function scale_C(e){
 
                         event_type="scale"
@@ -112,6 +115,9 @@ window.addEventListener("load",function(){
                         stage.addEventListener(annie.MouseEvent.MOUSE_UP,scale_U)
 
                     }
+
+
+                    //move
 
                     function scale_M(e){
 
@@ -148,6 +154,8 @@ window.addEventListener("load",function(){
 
 
 
+
+
                         }else{
 
 
@@ -158,6 +166,9 @@ window.addEventListener("load",function(){
 
 
                     }
+
+
+                    //mouse_UP
 
                     function scale_U(e){
 
@@ -172,6 +183,9 @@ window.addEventListener("load",function(){
 
                     }
 
+
+                    //rotate
+
                     function rota_C(e){
 
                         event_type="rotate"
@@ -184,6 +198,8 @@ window.addEventListener("load",function(){
 
                     }
 
+
+                    //clear
                     function clean_C(e){
 
                         event_type="clear"
