@@ -71,6 +71,8 @@ window.addEventListener("load",function(){
 
                     function onTouch(e){
 
+            	        console.log(e.rotate)
+
             	        copy_arr[n].rotation+=e.rotate
                         copy_arr[n].scaleX+=e.scale
                         copy_arr[n].scaleY+=e.scale
