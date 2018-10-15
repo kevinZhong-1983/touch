@@ -5,7 +5,7 @@ window.addEventListener("load",function(){
     //默认关闭自动旋转和自动resize
     //stage.autoResize=true;
     //stage.autoSteering=true;
-    stage.isMultiTouch=true
+
     stage.addEventListener(annie.Event.ON_INIT_STAGE,function (e) {
     	//想要同时加载多个场景的话，Annie2x.loadScene的第一个参数可以传数组如 ["scene1","scene2",...]
         annie.loadScene("a2x",function(per){
@@ -41,9 +41,19 @@ window.addEventListener("load",function(){
 
                     }
 
+
+                    stage.isMultiTouch=true
+                    stage.addEventListener(annie.TouchEvent.ON_MULTI_TOUCH,function(e){
+
+                        alert(e.rotate)
+
+                    })
+
                 }
 
                 init()//初始化
+
+
 
 
                 function onD(e){
@@ -58,40 +68,15 @@ window.addEventListener("load",function(){
                     copy_mc.y=stage.desHeight/2-400/2
                     copy_mc.tt.text=myNum+1
                     copy_arr.push(copy_mc)
-                    even_Fun(temp)
-
-                    temp++
-
-                }
-
-
-                function even_Fun(n){
-
-
-            	    stage.addEventListener(annie.TouchEvent.ON_MULTI_TOUCH,onTouch)
-
-                    function onTouch(e){
-
-            	        console.log(e.rotate)
-
-            	        copy_arr[n].rotation+=e.rotate
-                        copy_arr[n].scaleX+=e.scale
-                        copy_arr[n].scaleY+=e.scale
 
 
 
-                    }
-
-
+                    // copy_mc.rotation+=e.rotate
+                    // copy_mc.scaleX+=e.scale
+                    // copy_mc.scaleY+=e.scale
 
 
                 }
-
-
-
-
-
-
 
 
             }
