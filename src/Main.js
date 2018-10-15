@@ -47,9 +47,6 @@ window.addEventListener("load",function(){
 
                 init()//初始化
 
-
-
-
                 function onD(e){
 
             	    var myNum=mc_arr.indexOf(e.currentTarget)
@@ -58,25 +55,90 @@ window.addEventListener("load",function(){
                     var copy_mc=new a2x.MC2()
                     stage.addChild(copy_mc)
 
-                    copy_mc.x=stage.desWidth/2-283/2
-                    copy_mc.y=stage.desHeight/2-400/2
+                    copy_mc.x=stage.desWidth/2
+                    copy_mc.y=stage.desHeight/2
                     copy_mc.tt.text=myNum+1
                     copy_arr.push(copy_mc)
 
+                    // stage.isMultiTouch=true
+                    // stage.addEventListener(annie.TouchEvent.ON_MULTI_TOUCH,function(e){
+                    //
+                    //     copy_mc.rotation+=e.rotate
+                    //     copy_mc.scaleX+=e.scale
+                    //     copy_mc.scaleY+=e.scale
+                    //
+                    // })
+                    event_Fun(temp)
+                    temp++
+                }
 
-                    stage.isMultiTouch=true
-                    stage.addEventListener(annie.TouchEvent.ON_MULTI_TOUCH,function(e){
-
-                        copy_mc.rotation+=e.rotate
-                        copy_mc.scaleX+=e.scale
-                        copy_mc.scaleY+=e.scale
-
-                    })
+                function event_Fun(n){
 
 
+                    copy_arr[n].btn_mc.scale_btn.addEventListener(annie.MouseEvent.MOUSE_DOWN,scale_C)
+
+                    copy_arr[n].btn_mc.rota_btn.addEventListener(annie.MouseEvent.MOUSE_DOWN,rota_C)
+                    copy_arr[n].btn_mc.clean_btn.addEventListener(annie.MouseEvent.MOUSE_DOWN,clean_C)
+
+
+                    function scale_C(e){
+
+
+                        tempx=e.stageX
+
+
+
+                        stage.addEventListener(annie.MouseEvent.MOUSE_MOVE,scale_M)
+                        stage.addEventListener(annie.MouseEvent.MOUSE_UP,scale_U)
+
+
+                    }
+
+                    function scale_M(e){
+
+                        scale_Num=(e.stageX-tempx)/10000
+
+                        if(copy_arr[n].scaleX<0.2){
+
+                            copy_arr[n].scaleX=0.2
+                            copy_arr[n].scaleY=0.2
+
+                        }else{
+
+                            copy_arr[n].scaleX+=scale_Num
+                            copy_arr[n].scaleY+=scale_Num
+
+                       }
+
+                        //console.log(copy_arr[n].scaleX)
+
+
+
+
+
+                    }
+
+                    function scale_U(e){
+
+                        stage.removeEventListener(annie.MouseEvent.MOUSE_MOVE,scale_M)
+
+                    }
+
+                    function rota_C(e){
+
+
+                    }
+
+                    function clean_C(e){
+
+
+                    }
 
 
                 }
+
+
+
 
 
             }
