@@ -42,12 +42,6 @@ window.addEventListener("load",function(){
                     }
 
 
-                    stage.isMultiTouch=true
-                    stage.addEventListener(annie.TouchEvent.ON_MULTI_TOUCH,function(e){
-
-                        alert(e.rotate)
-
-                    })
 
                 }
 
@@ -70,10 +64,16 @@ window.addEventListener("load",function(){
                     copy_arr.push(copy_mc)
 
 
+                    stage.isMultiTouch=true
+                    stage.addEventListener(annie.TouchEvent.ON_MULTI_TOUCH,function(e){
 
-                    // copy_mc.rotation+=e.rotate
-                    // copy_mc.scaleX+=e.scale
-                    // copy_mc.scaleY+=e.scale
+                        copy_mc.rotation+=e.rotate
+                        copy_mc.scaleX+=e.scale
+                        copy_mc.scaleY+=e.scale
+
+                    })
+
+
 
 
                 }
