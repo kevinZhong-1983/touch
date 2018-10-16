@@ -21,6 +21,9 @@ window.addEventListener("load",function(){
             	var mc_arr=[]
                 var copy_arr=[]
                 var temp=0
+                var _iis=true
+                var temp_rotation=0
+                var temp_scale=1
 
             	function init(){
 
@@ -105,7 +108,7 @@ window.addEventListener("load",function(){
                     function scale_C(e){
 
                         event_type="scale"
-                        tempx=e.stageX
+                        tempx=copy_arr[n].x
 
                         copy_arr[n].drag_mc.removeEventListener(annie.MouseEvent.MOUSE_DOWN,move_C)
                         copy_arr[n].btn_mc.rota_btn.removeEventListener(annie.MouseEvent.MOUSE_DOWN,rota_C)
@@ -133,17 +136,17 @@ window.addEventListener("load",function(){
 
                         }else if(event_type=='scale'){
 
-                            scale_Num=(e.stageX-tempx)/10000
+                            scale_Num=(e.stageX-tempx)/100
 
-                            if(copy_arr[n].scaleX<0.2){
+                            if(scale_Num<0.2){
 
                                 copy_arr[n].scaleX=0.2
                                 copy_arr[n].scaleY=0.2
 
                             }else{
 
-                                copy_arr[n].scaleX+=scale_Num
-                                copy_arr[n].scaleY+=scale_Num
+                                copy_arr[n].scaleX=scale_Num
+                                copy_arr[n].scaleY=scale_Num
 
                             }
 
@@ -153,13 +156,29 @@ window.addEventListener("load",function(){
 
                         }else if(event_type=='rotate'){
 
+
                             function getAngle(p1, p2) {
-                                var x = p1.x - p2.x,
-                                    y = p1.y- p2.y;
-                                return Math.atan2(y, x) * 180 / Math.PI;
+                                var x = p2.x - p1.x,
+                                    y = p2.y- p1.y;
+
+
+                                return Math.atan2(y, x) * 180 / Math.PI+130
+
                             };
-                            var angle = getAngle({x:rotate_tempX, y:rotate_tempY}, {x:e.stageX, y:e.stageY});
-                            copy_arr[n].rotation+=angle
+
+                            angle = getAngle({x:rotate_tempX, y:rotate_tempY}, {x:e.stageX, y:e.stageY});
+
+
+                            if(_iis){
+
+
+                                angle+=temp_rotation
+                                _iis=false
+
+                            }
+
+                            copy_arr[n].rotation=angle
+
 
 
 
@@ -182,6 +201,11 @@ window.addEventListener("load",function(){
                     function scale_U(e){
 
                        event_type=""
+                       _iis=true
+                        temp_rotation=copy_arr[n].rotation
+                        temp_scale=copy_arr[n].scaleX
+
+                        console.log(copy_arr[n].scaleX)
                        stage.removeEventListener(annie.MouseEvent.MOUSE_MOVE,scale_M)
                        stage.removeEventListener(annie.MouseEvent.MOUSE_UP,scale_U)
                        copy_arr[n].drag_mc.addEventListener(annie.MouseEvent.MOUSE_DOWN,move_C)
@@ -205,12 +229,10 @@ window.addEventListener("load",function(){
                         stage.addEventListener(annie.MouseEvent.MOUSE_MOVE,scale_M)
                         stage.addEventListener(annie.MouseEvent.MOUSE_UP,scale_U)
 
-                        rotate_tempX=e.stageX
-                        rotate_tempY=e.stageY
+                        rotate_tempX=copy_arr[n].x
+                        rotate_tempY=copy_arr[n].y
 
-
-
-
+                        //angle=copy_arr[n].rotation
 
                     }
 
