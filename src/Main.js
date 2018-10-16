@@ -160,8 +160,6 @@ window.addEventListener("load",function(){
                             function getAngle(p1, p2) {
                                 var x = p2.x - p1.x,
                                     y = p2.y- p1.y;
-
-
                                 return Math.atan2(y, x) * 180 / Math.PI+130
 
                             };
@@ -178,9 +176,6 @@ window.addEventListener("load",function(){
                             }
 
                             copy_arr[n].rotation=angle
-
-
-
 
                         }else{
 
