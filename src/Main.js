@@ -158,7 +158,7 @@ window.addEventListener("load",function(){
                                     y = p1.pageY- p2.pageY;
                                 return Math.atan2(y, x) * 180 / Math.PI;
                             };
-                            var angle = getAngle({rotate_tempX, rotate_tempY}, {e.stageX, e.stageY});
+                            var angle = getAngle({x:rotate_tempX, y:rotate_tempY}, {x:e.stageX, y:e.stageY});
                             copy_arr[n].rotation=angle
 
 
