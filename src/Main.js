@@ -45,7 +45,9 @@ window.addEventListener("load",function(){
 
                 }
 
-                init()//初始化
+                //初始化
+
+                init()
 
                 function onD(e){
 
@@ -87,7 +89,6 @@ window.addEventListener("load",function(){
                     function move_C(e){
 
                         event_type="move"
-                        //
                         //
                         copy_arr[n].btn_mc.scale_btn.removeEventListener(annie.MouseEvent.MOUSE_DOWN,scale_C)
                         copy_arr[n].btn_mc.rota_btn.removeEventListener(annie.MouseEvent.MOUSE_DOWN,rota_C)
@@ -152,11 +153,21 @@ window.addEventListener("load",function(){
 
                         }else if(event_type=='rotate'){
 
+                            function angle(start,end){
+                                var diff_x = end.x - start.x,
+                                    diff_y = end.y - start.y;
+                                //返回角度,不是弧度
+                                return 360*Math.atan(diff_y/diff_x)/(2*Math.PI);
+                            }
 
+                            var rotate_angle=angle({x:rotate_tempX,y:rotate_tempY},{x:e.stageX,y:e.stageY})
+                            copy_arr[n].rotation+=rotate_angle
 
 
 
                         }else{
+
+
 
 
 
@@ -172,13 +183,13 @@ window.addEventListener("load",function(){
 
                     function scale_U(e){
 
-                        event_type=""
+                       event_type=""
                        stage.removeEventListener(annie.MouseEvent.MOUSE_MOVE,scale_M)
                        stage.removeEventListener(annie.MouseEvent.MOUSE_UP,scale_U)
                        copy_arr[n].drag_mc.addEventListener(annie.MouseEvent.MOUSE_DOWN,move_C)
                        copy_arr[n].btn_mc.scale_btn.addEventListener(annie.MouseEvent.MOUSE_DOWN,scale_C)
                        copy_arr[n].btn_mc.rota_btn.addEventListener(annie.MouseEvent.MOUSE_DOWN,rota_C)
-                        copy_arr[n].btn_mc.clean_btn.addEventListener(annie.MouseEvent.MOUSE_DOWN,clean_C)
+                       copy_arr[n].btn_mc.clean_btn.addEventListener(annie.MouseEvent.MOUSE_DOWN,clean_C)
 
 
                     }
@@ -195,6 +206,13 @@ window.addEventListener("load",function(){
 
                         stage.addEventListener(annie.MouseEvent.MOUSE_MOVE,scale_M)
                         stage.addEventListener(annie.MouseEvent.MOUSE_UP,scale_U)
+
+                        rotate_tempX=e.stageX
+                        rotate_tempY=e.stageY
+
+
+
+
 
                     }
 
