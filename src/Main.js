@@ -153,22 +153,13 @@ window.addEventListener("load",function(){
 
                         }else if(event_type=='rotate'){
 
-                            function getAngle(x1, y1, x2, y2) {
-                                // 直角的边长
-                                var x = Math.abs(x1 - x2);
-                                var y = Math.abs(y1 - y2);
-                                // 斜边长
-                                var z = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
-                                // 余弦
-                                var cos = y / z;
-                                // 弧度
-                                var radina = Math.acos(cos);
-                                // 角度
-                                var angle =  180 / (Math.PI / radina);
-                                return angle;
-                            }
-                            var angle = getAngle(rotate_tempX, rotate_tempY, e.stageX, e.stageY);
-                            copy_arr[n].rotation+=angle
+                            function getAngle(p1, p2) {
+                                var x = p1.pageX - p2.pageX,
+                                    y = p1.pageY- p2.pageY;
+                                return Math.atan2(y, x) * 180 / Math.PI;
+                            };
+                            var angle = getAngle({rotate_tempX, rotate_tempY}, {e.stageX, e.stageY});
+                            copy_arr[n].rotation=angle
 
 
 
